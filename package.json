@@ -22,7 +22,9 @@
     "url": "https://github.com/Markkop/habiticaStatusReporter/issues"
   },
   "homepage": "https://github.com/Markkop/habiticaStatusReporter#readme",
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/node": "^7.7.4",
