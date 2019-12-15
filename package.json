@@ -1,0 +1,24 @@
+{
+  "name": "statusreport",
+  "version": "0.0.1",
+  "description": "A bot that shares a Habitica's character status on Twitter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Markkop/habiticaStatusReporter.git"
+  },
+  "keywords": [
+    "habitica",
+    "tutorial",
+    "twitter"
+  ],
+  "author": "Mark Kop",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Markkop/habiticaStatusReporter/issues"
+  },
+  "homepage": "https://github.com/Markkop/habiticaStatusReporter#readme"
+}
