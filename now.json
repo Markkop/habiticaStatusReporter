@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "index.js",
+            "use": "@now/node-server"
+        }
+    ],
+    "env": {
+        "HABITICA_USERID": "@habitica-userid",
+        "TWITTER_CONSUMER_APIKEY": "@twitter-consumer-apikey",
+        "TWITTER_CONSUMER_APISECRETKEY": "@twitter-consumer-apisecretkey",
+        "TWITTER_ACCESS_TOKEN": "@twitter-access-token",
+        "TWITTER_ACCESS_SECRETTOKEN": "@twitter-access-secrettoken"
+    }
+}

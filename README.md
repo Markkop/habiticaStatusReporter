@@ -20,3 +20,18 @@ Initially the ideia was to make a cron bot that would publish these reports dail
 ## How to aquire habitica userid
 
 1. Copy User ID from this [settings page](https://habitica.com/user/settings/api)
+
+## How to deploy on Now
+
+1. Install Now globally with `npm install -g now`
+2. Add your secrets with `now secrets add` such as in
+```
+now secrets add habitica-userid <userid>
+now secrets add twitter-consumer-apikey <key>
+now secrets add twitter-consumer-apisecretkey <key>
+now secrets add twitter-access-token <token>
+now secrets add twitter-access-secrettoken <token>
+```
+3. Check out how some configs are used in [now.json](now.json)
+4. Run `now`. You migth also try [run dev](https://zeit.co/blog/now-dev) and [now --prod](https://zeit.co/docs/now-cli#commands/now/unique-options)
+5. You'll be prompted to login somewhere during this process.
