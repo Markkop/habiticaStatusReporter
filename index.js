@@ -1,13 +1,17 @@
 import 'dotenv/config'
 import axios from 'axios'
 import OAuth from 'oauth'
+import Koa from 'koa';
 
 const getStats = async (userid) => {
     try {
+        console.log(`Getting Habitica stats for user id: ${userid}`)
         const response = await axios.get(`https://habitica.com/api/v3/members/${userid}`)
-        return response.data.data.stats
+        const stats = response.data.data.stats
+        console.log('The following stats were obtained:\n', JSON.stringify(stats))
+        return stats
     } catch (error) {
-        console.log(error)
+        console.log('Error: Could not get habitica stats: ', error)
     }
 }
 
@@ -36,7 +40,8 @@ const reportTwitter = async (message) => {
         'HMAC-SHA1'
     );
 
-    return oauth.post(
+    console.log(`Posting tweet with message: ${message}`)
+    return new Promise((resolve, reject) => oauth.post(
         'https://api.twitter.com/1.1/statuses/update.json',
         process.env.TWITTER_ACCESS_TOKEN,
         process.env.TWITTER_ACCESS_SECRETTOKEN,
@@ -44,25 +49,34 @@ const reportTwitter = async (message) => {
         'application/x-www-form-urlencoded',
         function callback(error, data, res) {
             if (error) {
-                throw new Error(error.data)
+                const errorMessage = error.data
+                console.log('Error: could not post tweet ', errorMessage)
+                return resolve(errorMessage)
             };
 
             const jsonData = JSON.parse(data)
             const { user: { screen_name }, text } = jsonData
-            console.log(`Tweet created! @${screen_name}: ${text}`)
-            return true
-        });
+            const successMessage = `Tweet created! @${screen_name}: ${text}`
+            console.log(successMessage)
+            return resolve(successMessage)
+        }));
 }
 
 const reportStatus = async () => {
     try {
         const stats = await getStats(process.env.HABITICA_USERID)
         const message = selectMessage(stats)
-        return reportTwitter(message)
+        const response = await reportTwitter(message)
+        return response
     } catch (error) {
         console.log(error)
     }
 }
 
-reportStatus()
 
+const app = new Koa();
+app.use(async (ctx) => {
+    const message = await reportStatus()
+    ctx.response.body = message
+});
+app.listen(3000);
