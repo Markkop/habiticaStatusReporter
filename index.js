@@ -10,10 +10,25 @@ const getStats = async (userid) => {
     }
 }
 
+const selectMessage = ({ hp = 0, maxHealth = 0, exp = 0, toNextLevel = 0 }) => {
+    const status = `[HP: ${hp}/${maxHealth}] [EXP: ${exp.toFixed()}/${toNextLevel}]`
+
+    if (hp <= maxHealth * 0.3) {
+        return `I'm almost dying, help! ${status}`
+    }
+
+    if (exp >= toNextLevel * 0.7) {
+        return `I'm almost leveling up! ${status}`
+    }
+
+    return `Things are fine for now. ${status}`
+}
+
 const reportStatus = async () => {
     try {
         const stats = await getStats(process.env.HABITICA_USERID)
-        console.log(stats)
+        const message = selectMessage(stats)
+        console.log(message)
     } catch (error) {
         console.log(error)
     }
