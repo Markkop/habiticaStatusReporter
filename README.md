@@ -8,3 +8,7 @@ Here we'll be building a bot that checks a character's attributes on Habitica an
 1. Run clone this repository and `npm install`
 2. Create a copy of `.envexample`, rename it to `.env` and add your credentials inside.
 3. Run `npm run dev`
+
+## How to aquire habitica userid
+
+1. Copy User ID from this [settings page](https://habitica.com/user/settings/api)
