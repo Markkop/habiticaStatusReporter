@@ -1,10 +1,12 @@
+![Um homem soltando faíscas](/imgs/power1.jpeg)
+
 # Como começar a jogar com a classe Javascripter
 
 Abra o terminal em seu sistema operacional (Windowers podem usar [GIT Bash](https://gitforwindows.org/)) e veja uma tela preta.
 
 O cursor piscando na linha de comando mostra que você está no jogo. Você pode transitar entre classes à vontade, mas a sua experiência em cada vai variar bastante. A classe **Javascripter** está bastante no meta hoje em dia e este guia será com base nela.
 
-![top6classes.png](/imgs/top6classes.png)
+![Pesquisa da Stackoverflow com as 6 linguagens mais populares de 2019](/imgs/top6classes.png)
 
 ## Primeiros passos
 
@@ -13,6 +15,8 @@ Há diferentes forma de usar suas habilidades com **Javascript** . Nós utilizar
 Para habilitar o save mode, use [git init](https://git-scm.com/docs/git-init) uma vez e [git commit -am "save"](https://git-scm.com/docs/git-commit) para salvar. É interessante que em vez de `save` você use uma mensagem breve e semântica do seu progresso.
 
 Com o save mode ativado, os seus segredos podem ficar expostos à inimigos e para protegê-los usa-se [dotenv](https://github.com/motdotla/dotenv). Crie um arquivo `.env` com `valor="chave"` e adicione ele em um arquivo `.gitignore`. Então acesse-os com `process.get.INFO`.
+
+![Personagem subindo de nível em um jogo 3d genérico](/imgs/levelup.png)
 
 ### Evoluções e Combos
 
@@ -45,9 +49,11 @@ npm run dev
 
 O editor de texto é quem vai manipular o script.js e permitir diferentes resultados de acordo com o que você quer fazer. Recomendo o [VSCode](https://code.visualstudio.com/) com imbuí navegação de arquivos, editor de texto e terminal tudo junto, além de diversas [outras](https://marketplace.visualstudio.com/) [vantagens](https://code.visualstudio.com/docs/editor/intellisense).
 
-Quests e outros objetivos irão necessitar de diferentes recursos, comopor exemplo [express](https://expressjs.com/)/[koa](https://koajs.com/) para criar rotas e abrir portas dentro do seu domínio e [react](https://reactjs.org/)/[vue](https://vuejs.org/) para gerar interfaces e entidades visuais.
+Quests e outros objetivos irão necessitar de diferentes recursos, como por exemplo [express](https://expressjs.com/)/[koa](https://koajs.com/) para criar rotas e abrir portas dentro do seu domínio e [react](https://reactjs.org/)/[vue](https://vuejs.org/) para gerar interfaces e entidades visuais.
 
 ## statusReport
+
+![Tweet escrito "Things are fine for now" HP: 50/50 EXP:258/1560](/imgs/tweet1.png)
 
 Nesta campanha, vamos criar uma aplicação em Node que verifica o [status](https://habitica.com/apidoc/#api-Member-GetMember) de um personagem de Habitica e [posta](https://developer.twitter.com/en/docs/basics/authentication/overview/oauth) um tweet com um resumo da situação. Esse processo deverá acontecer toda vez que um endpoint for acessado.
 
@@ -55,7 +61,7 @@ Daqui pra frente assume-se que você já esteja preparado com as evoluções cit
 
 ### Quest #1: Obter as informações do Habitica
 
-![stats.png](/imgs/stats.png)
+![Um exemplo do retorno do JSON da api do Habitica](/imgs/stats.png)
 
 Nós invocaremos uma magia utilitária com `npm install axios` que acessará o domínio de Habitica e nos retornará as informações sobre um dado personagem. A identificação do personagem está guardada na variável de ambiente em `.env` acessada com `process.env.HABITICA_USERID`.
 
@@ -128,8 +134,6 @@ Neste o momento podemos identificar algumas peculiaridades como [Template Litera
 
 ### Quest 3: Postar no twitter
 
-![tweet1.png](/imgs/tweet1.png)
-
 Aqui começa a dificuldade passa a aumentar e nesta solução será necessário fazer um registro no domínio dos magos do Twitter para obter tokens secretos. Esses tokens serão utilizadas junto com o método OAuth para enviar mensagens ao domínio.
 
 ```javascript
@@ -184,6 +188,9 @@ Mais segredos são armazendos no `.env`, [JSON.parse](https://developer.mozilla.
 
 ### Quest 4: Endpoint de acionamento
 
+Nossa missão está quase concluída e aqui há algumas coisas interessantes acontecendo. 
+Estamos usando [Koa](https://koajs.com/) para preparar o endpoint da api que acionará e retornará o resultado do report. 
+
 ```javascript
 //..
 import Koa from 'koa';
@@ -235,17 +242,17 @@ app.use(async (ctx) => {
 app.listen(3000);
 ```
 
-Nossa missão está quase concluída e aqui há algumas coisas interessantes acontecendo. 
-Estamos usando [Koa](https://koajs.com/) para preparar o endpoint da api que acionará e retornará o resultado do report. 
-E se olharmos mais de perto, veremos que a função `reportTwitter()` agora retorna uma [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Isso teve que ser feito, pois `oauth.post()` não retorna uma Promise por padrão e precisamos que seja assim para exibir o retorno no `ctx.response.body`.
+E se olharmos mais de perto, veremos que a função `reportTwitter()` agora retorna uma [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). 
+Isso teve que ser feito, pois `oauth.post()` não retorna uma Promise por padrão e precisamos que seja assim para exibir o retorno no `ctx.response.body`.
+
 Note que a função não é **rejeitada()** no erro, mas sim **resolvida()** para que exiba a mensagem de erro na tela (ctx).
 
-![npmrundev.png](/imgs/npmrundev.png)
+![Logs após rodar npm run dev](/imgs/npmrundev.png)
 
 ### Quest #5: Deploy
 
 Como passo final dessa missão, subiremos a nossa criação às nuvens.
-Utilizaremos o utilitário Now instalando ele globalmente com `npm install -g now`, criando uma conta digitando `now` e adicionando nosso segredos de forma segura em nossa conta com
+Utilizaremos o utilitário [Now](https://zeit.co/docs/now-cli) instalando ele globalmente com `npm install -g now`, criando uma conta digitando `now` e adicionando nosso [segredos](https://zeit.co/docs/v2/environment-variables-and-secrets) de forma segura em nossa conta com
 ```
 now secrets add habitica-userid <userid>
 now secrets add twitter-consumer-apikey <key>
@@ -254,7 +261,7 @@ now secrets add twitter-access-token <token>
 now secrets add twitter-access-secrettoken <token>
 ```
 
-E com mais algumas configurações no now.json...
+E com mais algumas configurações no [now.json](https://zeit.co/docs/configuration/)...
 
 ```json
 {
@@ -277,7 +284,7 @@ E com mais algumas configurações no now.json...
 
 Invoque `now` na linha de comando e missão cumprida.
 
-![nowlogs.png](/imgs/nowlogs.png)
+![Logs na página do serviço no Now](/imgs/nowlogs.png)
 
 ### Cronomagia é difícil?
 
