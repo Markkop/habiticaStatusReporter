@@ -14,13 +14,13 @@ You can also read the tutorial [in Portuguese](/) or [in English](/) (soon).
 3. Run `npm run dev`
 4. Access http://localhost:3000/ to trigger the report to Twitter.
 
-## How to aquire twitter tokens
+## How to acquire twitter tokens
 
 1. [Apply for twitter developer](https://developer.twitter.com/en/apply)
 2. [Generate tokens](https://developer.twitter.com/en/docs/basics/authentication/guides/access-tokens)
 3. We'll be using [OAuth](https://www.npmjs.com/package/oauth) for [authentication](https://developer.twitter.com/en/docs/basics/authentication/overview/oauth)
 
-## How to aquire habitica userid
+## How to acquire habitica userid
 
 1. Copy User ID from this [settings page](https://habitica.com/user/settings/api)
 
