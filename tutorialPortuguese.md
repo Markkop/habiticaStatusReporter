@@ -1,39 +1,57 @@
-**Codar é um jogo e para começar a jogo basta abrir um editor de código.**
+# Como começar a jogar com a classe Javascripter
 
-O cursor piscando na linha de comando mostra que você está no jogo. Você pode transitar entre classes à vontade, mas a sua experiência em cada vai variar bastante. A classe Javascripter está bastante no meta hoje em dia e este guia será com base nela.
+Abra o terminal em seu sistema operacional (Windowers podem usar [GIT Bash](https://gitforwindows.org/)) e veja uma tela preta.
 
-![top10classes.png](/imgs/top10classes.png)
+O cursor piscando na linha de comando mostra que você está no jogo. Você pode transitar entre classes à vontade, mas a sua experiência em cada vai variar bastante. A classe **Javascripter** está bastante no meta hoje em dia e este guia será com base nela.
 
-Há diferentes forma de usar suas habilidades com **Javascript** . Uma delas é castando `npm init` no local para ativar alguns equipamentos básicos. Não se esqueça de habilitar o modo com save castando `git init`. Com certos artefatos avançados (como npx) é possível utilizar ambos ao mesmo tempo com [diversos](https://reactjs.org/docs/create-a-new-react-app.html) [boosts](https://nuxtjs.org/guide/installation/#using-code-create-nuxt-app-code-) nos poderes.
+![top6classes.png](/imgs/top6classes.png)
 
-Cuidado, pois ao utilizar o git você pode acabar comprometendo algumas informações suas se não se proteger adequadamente. Um grande utilitário é o [dotenv](https://github.com/motdotla/dotenv) no `.gitignore` e usá-lo com `process.get.INFO`.
+## Primeiros passos
 
-Evolução:
+Há diferentes forma de usar suas habilidades com **Javascript** . Nós utilizaremos uma que concede alguns equipamentos básicos, bastando castar [npm init](https://docs.npmjs.com/cli/init) dentro de uma pasta.
 
-Sua habilidade básica será `node script.js` e logo poderá ser [melhorada](https://github.com/Markkop/habiticaStatusReporter/commit/6edaa9efb8b0067724aa58594e84b9cf86415bfe) para `nodemon script.js`, permitindo um fluxo melhor nas suas magias. Uma grande [evolução](https://github.com/Markkop/habiticaStatusReporter/commit/05c79149ae8c9caffbd3801533b7dd0dee12d2fb) será utilizar `babel-node script.js` para permitir a utilização de magias atualizadas e acompanhar o [meta](https://en.wikipedia.org/wiki/ECMAScript) atual no uso das habilidades.
+Para habilitar o save mode, use [git init](https://git-scm.com/docs/git-init) uma vez e [git commit -am "save"](https://git-scm.com/docs/git-commit) para salvar. É interessante que em vez de `save` você use uma mensagem breve e semântica do seu progresso.
+
+Com o save mode ativado, os seus segredos podem ficar expostos à inimigos e para protegê-los usa-se [dotenv](https://github.com/motdotla/dotenv). Crie um arquivo `.env` com `valor="chave"` e adicione ele em um arquivo `.gitignore`. Então acesse-os com `process.get.INFO`.
+
+### Evoluções e Combos
+
+Sua habilidade básica será **[node](https://nodejs.org/api/cli.html#cli_synopsis) script.js** e logo poderá ser [melhorada](https://github.com/Markkop/habiticaStatusReporter/commit/6edaa9efb8b0067724aa58594e84b9cf86415bfe) para **[nodemon](https://github.com/remy/nodemon) script.js**, permitindo um fluxo melhor nas suas magias.
+
+Uma grande [evolução](https://github.com/Markkop/habiticaStatusReporter/commit/05c79149ae8c9caffbd3801533b7dd0dee12d2fb) será utilizar **nodemon --exec [babel-node](https://babeljs.io/docs/en/babel-node) script.js** para permitir a utilização de magias atualizadas e acompanhar o [meta](https://en.wikipedia.org/wiki/ECMAScript) atual das habilidades.
 
 ```javascript
-// .babelrc
+npm install nodemon --save-dev
+npm install @babel/core @babel/node @babel/preset-env --save-dev
+
+// Crie .babelrc e coloque:
 {
   "presets": [
     "@babel/preset-env"
   ]
 }
-```
 
-```bash
-npm install @babel/core @babel/node @babel/preset-env --save-dev
+node script.js
+nodemon script.js
 nodemon --exec babel-node script.js
+
+// Adicione ao package.json:
+"scripts": {
+"dev": "nodemon --exec babel-node index.js"
+},
+
+npm run dev
 ```
 
-Beleza, mas pra usar magias de fato não basta apenas invocar, precisa criar também. Isto é possível usando um editor de código onde você já tem o terminal e o editor de texto juntos, além diversos de outros recursos auxiliares. O meta está bastante forte usando o [VSCode](https://code.visualstudio.com/). Inclusive imagino que seja usando um que você chegou até aqui.
+O editor de texto é quem vai manipular o script.js e permitir diferentes resultados de acordo com o que você quer fazer. Recomendo o [VSCode](https://code.visualstudio.com/) com imbuí navegação de arquivos, editor de texto e terminal tudo junto, além de diversas [outras](https://marketplace.visualstudio.com/) [vantagens](https://code.visualstudio.com/docs/editor/intellisense).
 
-O editor de texto é quem vai alterar o conteúdo do script.js e permitir diferentes resultados de acordo com o que você quer fazer. Diversos outros recursos serão necessários para se alcançar o objetivo. Por exemplo [express](https://expressjs.com/) ou [koa](https://koajs.com/) para criar rotas e abrir portas dentro do seu domínio (localhost) e [react](https://reactjs.org/) ou [vue](https://vuejs.org/) para gerar interfaces e entidades visuais.
+Quests e outros objetivos irão necessitar de diferentes recursos, comopor exemplo [express](https://expressjs.com/)/[koa](https://koajs.com/) para criar rotas e abrir portas dentro do seu domínio e [react](https://reactjs.org/)/[vue](https://vuejs.org/) para gerar interfaces e entidades visuais.
 
 ## statusReport
 
-Nesta campanha, vamos criar uma aplicação em Node que verifica o status de um personagem de Habitica e posta um tweet com um resumo da situação. Para dispará-la, criaremos um endpoint que deverá ser acessado.
-Daqui pra frente assume-se que você já esteja preparado com as evoluções citadas acima (nodemon, babel, dotenv, npm init, git init). Você também pode acompanhar o progresso das quests pelo [histórico de commits](https://github.com/Markkop/habiticaStatusReporter/commits/master) dessa campanha.
+Nesta campanha, vamos criar uma aplicação em Node que verifica o [status](https://habitica.com/apidoc/#api-Member-GetMember) de um personagem de Habitica e [posta](https://developer.twitter.com/en/docs/basics/authentication/overview/oauth) um tweet com um resumo da situação. Esse processo deverá acontecer toda vez que um endpoint for acessado.
+
+Daqui pra frente assume-se que você já esteja preparado com as evoluções citadas acima. Você também pode acompanhar o progresso das quests pelo [histórico de commits](https://github.com/Markkop/habiticaStatusReporter/commits/master) dessa campanha.
 
 ### Quest #1: Obter as informações do Habitica
 
@@ -81,6 +99,9 @@ const selectMessage = ({ hp = 0, maxHealth = 0, exp = 0, toNextLevel = 0 }) => {
     if (hp <= maxHealth * 0.3) {
         return `I'm almost dying, help! ${status}`
     }
+    //Também poderia ser:
+    //if (hp <= maxHealth * 0.3) return `I'm almost dying, help! ${status}`
+
 
     if (exp >= toNextLevel * 0.7) {
         return `I'm almost leveling up! ${status}`
@@ -110,7 +131,6 @@ Neste o momento podemos identificar algumas peculiaridades como [Template Litera
 ![tweet1.png](/imgs/tweet1.png)
 
 Aqui começa a dificuldade passa a aumentar e nesta solução será necessário fazer um registro no domínio dos magos do Twitter para obter tokens secretos. Esses tokens serão utilizadas junto com o método OAuth para enviar mensagens ao domínio.
-
 
 ```javascript
 // ...
@@ -218,7 +238,7 @@ app.listen(3000);
 Nossa missão está quase concluída e aqui há algumas coisas interessantes acontecendo. 
 Estamos usando [Koa](https://koajs.com/) para preparar o endpoint da api que acionará e retornará o resultado do report. 
 E se olharmos mais de perto, veremos que a função `reportTwitter()` agora retorna uma [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Isso teve que ser feito, pois `oauth.post()` não retorna uma Promise por padrão e precisamos que seja assim para exibir o retorno no `ctx.response.body`.
-Note que a função não é **rejeitada()** no erro, mas sim **resolvida()** para que exiba a mensagem de erro no ctx.
+Note que a função não é **rejeitada()** no erro, mas sim **resolvida()** para que exiba a mensagem de erro na tela (ctx).
 
 ![npmrundev.png](/imgs/npmrundev.png)
 
@@ -268,7 +288,10 @@ import cron from 'node-cron'
 cron.schedule('30 19 * * *', () => reportStatus())
 ```
 
-Mas como no Heroku e no Now as aplicações ficam _sleeping_ as coisas ficaram bem mais complicadas.
+Mas como no **Heroku** e no **Now** aplicações ficam _sleeping_, as coisas ficaram bem mais complicadas.
 
-Uma boa continuação para essa missão seria compartilhar como colocar o reportStatus em um container **Docker** e subí-lo na **AWS**. 
+## Próxima campanha?
+
+Uma boa continuação dessa campanha envolveria fazer **testes**, **refatorar**, **organizar** em arquivos, transformar em um container **Docker** e subir ele na **AWS**.
+
 O que acha? Gostaria de mais tutoriais assim? Deixe uma mensagem nos comentários o/
