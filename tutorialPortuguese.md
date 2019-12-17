@@ -51,7 +51,7 @@ O editor de texto é quem vai manipular o script.js e permitir diferentes result
 
 Quests e outros objetivos irão necessitar de diferentes recursos, como por exemplo [express](https://expressjs.com/)/[koa](https://koajs.com/) para criar rotas e abrir portas dentro do seu domínio e [react](https://reactjs.org/)/[vue](https://vuejs.org/) para gerar interfaces e entidades visuais.
 
-## statusReport
+## [statusReport](https://github.com/Markkop/habiticaStatusReporter)
 
 ![Tweet escrito "Things are fine for now" HP: 50/50 EXP:258/1560](/imgs/tweet1.png)
 
@@ -59,7 +59,7 @@ Nesta campanha, vamos criar uma aplicação em Node que verifica o [status](http
 
 Daqui pra frente assume-se que você já esteja preparado com as evoluções citadas acima. Você também pode acompanhar o progresso das quests pelo [histórico de commits](https://github.com/Markkop/habiticaStatusReporter/commits/master) dessa campanha.
 
-### Quest #1: Obter as informações do Habitica
+### [Quest #1](https://github.com/Markkop/habiticaStatusReporter/commit/db3889cceb5764d948f0bf41bf9198ec5f375453): Obter as informações do Habitica
 
 ![Um exemplo do retorno do JSON da api do Habitica](/imgs/stats.png)
 
@@ -92,7 +92,7 @@ reportStatus()
 
 Percebemos a necessidade de utilizar [Async/Await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) com [Try/Catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) em requisições assíncronas. 
 
-### Quest #2: Gerar mensagem com base nos stats
+### [Quest #2](https://github.com/Markkop/habiticaStatusReporter/commit/6ef7356c41db8b5402bb2d1563416e5dea3c0305): Gerar mensagem com base nos stats
 
 Aqui basta um pouco de manipulação javascripter. Uma forma simples de exemplificar a ideia é a seguinte:
 
@@ -132,7 +132,7 @@ reportStatus()
 Neste o momento podemos identificar algumas peculiaridades como [Template Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) nas strings e [Object Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) nos parâmetros de `selectMessage()`.
 
 
-### Quest 3: Postar no twitter
+### [Quest 3](https://github.com/Markkop/habiticaStatusReporter/commit/37667c78e501510c07fa6d10a50cd29d23311470): Postar no twitter
 
 Aqui começa a dificuldade passa a aumentar e nesta solução será necessário fazer um registro no domínio dos magos do Twitter para obter tokens secretos. Esses tokens serão utilizadas junto com o método OAuth para enviar mensagens ao domínio.
 
@@ -186,7 +186,7 @@ reportStatus()
 
 Mais segredos são armazendos no `.env`, [JSON.parse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) dá as caras e Object Destructuring é aplicado na veia do jsonData.
 
-### Quest 4: Endpoint de acionamento
+### [Quest 4](https://github.com/Markkop/habiticaStatusReporter/commit/0b0f4b95e67d11d175fa92920e3135dca7ca3ce7): Endpoint de acionamento
 
 Nossa missão está quase concluída e aqui há algumas coisas interessantes acontecendo. 
 Estamos usando [Koa](https://koajs.com/) para preparar o endpoint da api que acionará e retornará o resultado do report. 
@@ -249,7 +249,7 @@ Note que a função não é **rejeitada()** no erro, mas sim **resolvida()** par
 
 ![Logs após rodar npm run dev](/imgs/npmrundev.png)
 
-### Quest #5: Deploy
+### [Quest #5](https://github.com/Markkop/habiticaStatusReporter/commit/4b4552a402c2f0caea836b7a6198c86e862c6c50): Deploy
 
 Como passo final dessa missão, subiremos a nossa criação às nuvens.
 Utilizaremos o utilitário [Now](https://zeit.co/docs/now-cli) instalando ele globalmente com `npm install -g now`, criando uma conta digitando `now` e adicionando nosso [segredos](https://zeit.co/docs/v2/environment-variables-and-secrets) de forma segura em nossa conta com
