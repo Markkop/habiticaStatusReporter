@@ -117,7 +117,7 @@ const selectMessage = ({ hp = 0, maxHealth = 0, exp = 0, toNextLevel = 0 }) => {
 }
 
 const reportStatus = async () => {
-    try {https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+    try {
         const stats = await getStats(process.env.HABITICA_USERID)
         const message = selectMessage(stats)
         console.log(message)
