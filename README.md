@@ -5,7 +5,7 @@ Here we'll be building a bot that checks a character's attributes on Habitica an
 Initially the idea was to make a cron bot that would publish these reports daily, but I had problems with both Heroku and Now and decided to continue this tutorial with Docker and AWS later. For now, we'll be serving a GET endpoint which once accessed, it will trigger the report and display a feedback.
 
 Check the [commit history](https://github.com/Markkop/habiticaStatusReporter/commits/master) for a step-by-step guide.
-You can also read the tutorial [in Portuguese](/) or [in English](/) (soon).
+You can also read the tutorial [in Portuguese](https://blog.geekhunter.com.br/como-aprender-javascript-como-javascripter) or [in English](/) (soon).
 
 ## How to run
 
